@@ -59,15 +59,11 @@ const HomeScreen = ({ navigation }) => {
 
         <View>
           <Text style={styles.goalTitle}>Love yourself</Text>
-          <Text style={styles.goalTitle}>Love yourself</Text>
-          <Text style={styles.goalTitle}>Love yourself</Text>
-          <Text style={styles.goalTitle}>Love yourself</Text>
-          <Text style={styles.goalTitle}>Love yourself</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
 
-    
+
     //  <Button
     //       title="Go to another page"
     //       onPress={() => navigation.navigate("Details")}
