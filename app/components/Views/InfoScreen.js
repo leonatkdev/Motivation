@@ -11,8 +11,18 @@ import {
 } from "react-native";
 import arrow from "../../../assets/images/arrow.png";
 import bookmark from "../../../assets/images/bookmark.webp";
+import staticData from "./.././../..//constants/staticData";
 
-const InfoScreen = () => {
+
+const InfoScreen = ({navigation, route }) => {
+  let dynamicData
+
+if(route.params && route.params.itemName){
+   dynamicData = staticData?.filter(item => item.title == route.params.itemName)[0]
+}else{
+  dynamicData = staticData[0]
+}
+  
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.wrapper}>
@@ -26,7 +36,7 @@ const InfoScreen = () => {
           <Image
             style={styles.logo}
             source={{
-              uri: "https://64.media.tumblr.com/6f0a3cc72c4f5d64c201270a5d09647d/tumblr_pfxdeySS8j1wo2a1ao1_500.gifv",
+              uri: dynamicData?.imgURL
             }}
           />
 

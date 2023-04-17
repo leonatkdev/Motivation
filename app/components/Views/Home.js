@@ -10,7 +10,7 @@ import {
   FlatList,
   ScrollView,
 } from "react-native";
-import staticData from "./.././../..//constants/staticData";
+import staticData from "./.././../../constants/staticData";
 import arrow from "../../../assets/images/arrow.png";
 
 const HomeScreen = ({ navigation }) => {
@@ -25,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
               Based onn how you feel adn obstacles you face
             </Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity style={{ justifyContent: "center" }}>
             <Image
               style={{
                 width: 20,
@@ -36,7 +36,6 @@ const HomeScreen = ({ navigation }) => {
                 padding: 17,
                 justifyContent: "center",
                 alignItems: "center",
-                
               }}
               source={arrow}
               height={20}
@@ -50,13 +49,13 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.goalDesc}>
             Set goal and create a fullfilling future
           </Text>
-          <FlatList
-            style={styles.goals}
-            data={staticData}
-            numColumns={2}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
-              <View>
+          <View style={styles.goals}>
+            {staticData?.map((item, index) => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Details", { itemName: item.title })}
+                key={index}
+                style={styles.goal}
+              >
                 <Image
                   style={styles.logo}
                   source={{
@@ -64,9 +63,9 @@ const HomeScreen = ({ navigation }) => {
                   }}
                 />
                 <Text style={styles.goalItemTitle}>{item.title}</Text>
-              </View>
-            )}
-          />
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
 
         <View>
@@ -124,7 +123,15 @@ const styles = StyleSheet.create({
     color: "#787C7E",
   },
   goals: {
+    flex: 1,
     paddingTop: 20,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  goal: {
+    width: "48%",
+    marginBottom: 20,
   },
   logo: {
     width: 175,
