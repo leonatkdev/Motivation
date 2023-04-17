@@ -9,9 +9,15 @@ import {
   TouchableOpacity
 } from "react-native";
 import data from "../../../constants/introData";
+import arrowTail from '../../../assets/images/arrowWithTailRight.png'
 
-const Intro = () => {
+const Intro = ({navigation}) => {
   const [number, setNumber] = useState(0);
+
+  const nextScreen = (index) => {
+    setNumber(index)
+  }
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -29,20 +35,23 @@ const Intro = () => {
         >
           <Text style={styles.title}>{data[number]?.title}</Text>
           <Text style={styles.desc}>{data[number]?.desc}</Text>
-          <View>
+          <View style={{display: "flex", flexDirection: "row",  paddingTop: 40}}> 
             <View style={styles.dotsContainer}>
               <FlatList
                 data={data}
                 renderItem={({ item, index }) => {
                   const isActive = index === number;
                   return (
-                    <TouchableOpacity onPress={() => setNumber(index) } style={[styles.dot, isActive && styles.activeDot]} />
+                    <TouchableOpacity onPress={() => nextScreen(index) } style={[styles.dot, isActive && styles.activeDot]} />
                   );
                 }}
                 horizontal={true}
                 keyExtractor={(_, index) => index.toString()}
               />
             </View>
+            <TouchableOpacity onPress={() => navigation.navigate("Home")} style={{ backgroundColor: 'white', padding: 15, marginLeft: "auto", borderRadius: 100}}>
+              <Image source={arrowTail} style={{height: 20, width: 20  }} />
+            </TouchableOpacity>
             <Image />
           </View>
         </View>
@@ -53,10 +62,10 @@ const Intro = () => {
 
 const styles = StyleSheet.create({
   container: { position: "relative" },
-  box: { position: "absolute", bottom: 16, left: 30, padding: 20 },
+  box: { position: "absolute", bottom: 0, right: 0 , left: 0, padding: 20 , backgroundColor: 'black',borderTopLeftRadius: 16, borderTopRightRadius: 16, opacity: 4 },
   title: { color: "white", fontSize: 35 },
   desc: { color: "white", fontSize: 20, paddingTop: 16 },
-  dotsContainer: { paddingTop: 40},
+  dotsContainer: {marginTop: 20},
   dot: {
     width: 8,
     height: 8,

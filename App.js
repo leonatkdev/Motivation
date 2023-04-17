@@ -9,12 +9,22 @@ import Intro from "./app/components/Views/Intro";
 
 //Routing URL:https://reactnavigation.org/docs/tab-based-navigation
 
+const IntroNav = createNativeStackNavigator();
+
+function IntroScreen() {
+  return (
+    <IntroNav.Navigator screenOptions={{ headerShown: false }}>
+      <IntroNav.Screen name="Intro" component={Intro} />
+      <IntroNav.Screen name="Home" component={HomeScreen} />
+    </IntroNav.Navigator>
+  );
+}
+
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-      <HomeStack.Screen name="Intro" component={Intro} />
       <HomeStack.Screen name="Home" component={HomeScreen} />
     </HomeStack.Navigator>
   );
@@ -51,7 +61,7 @@ export default function App() {
       >
         <Tab.Screen
           name="HomeTab"
-          component={HomeStackScreen}
+          component={IntroScreen}
           options={{
             tabBarLabel: "Home",
           }}
