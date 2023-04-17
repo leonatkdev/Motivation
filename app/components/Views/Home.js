@@ -19,13 +19,25 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView style={styles.wrapper}>
         <Text style={styles.title}>Sunday</Text>
         <View style={styles.suggestBanner}>
-          <Text style={styles.suggestTitle}>Suggest an exercise</Text>
-          <Text style={styles.suggestDesc}>
-            Based onn how you feel adn obstacles you face
-          </Text>
+          <View style={{ width: "85%" }}>
+            <Text style={styles.suggestTitle}>Suggest an exercise</Text>
+            <Text style={styles.suggestDesc}>
+              Based onn how you feel adn obstacles you face
+            </Text>
+          </View>
           <TouchableOpacity>
             <Image
-              style={{ width: 20, height: 20, resizeMode: "stretch" }}
+              style={{
+                width: 20,
+                height: 20,
+                resizeMode: "stretch",
+                backgroundColor: "#1A1F23",
+                borderRadius: 100,
+                padding: 17,
+                justifyContent: "center",
+                alignItems: "center",
+                
+              }}
               source={arrow}
               height={20}
               width={20}
@@ -62,12 +74,6 @@ const HomeScreen = ({ navigation }) => {
         </View>
       </ScrollView>
     </SafeAreaView>
-
-
-    //  <Button
-    //       title="Go to another page"
-    //       onPress={() => navigation.navigate("Details")}
-    //     />
   );
 };
 
@@ -84,6 +90,8 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   suggestBanner: {
+    display: "flex",
+    flexDirection: "row",
     marginTop: "5%",
     padding: "7%",
     borderRadius: "8%",

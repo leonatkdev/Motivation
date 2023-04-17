@@ -1,11 +1,11 @@
 import * as React from "react";
 import { StatusBar } from "expo-status-bar";
-import { Button, Text, View, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./app/components/Views/Home";
 import InfoScreen from "./app/components/Views/InfoScreen";
+import Intro from "./app/components/Views/Intro";
 
 //Routing URL:https://reactnavigation.org/docs/tab-based-navigation
 
@@ -14,26 +14,19 @@ const HomeStack = createNativeStackNavigator();
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStack.Screen name="Intro" component={Intro} />
       <HomeStack.Screen name="Home" component={HomeScreen} />
-      {/* <HomeStack.Screen name="Details" component={DetailsScreen} /> */}
     </HomeStack.Navigator>
   );
 }
 
-const SettingsStack = createNativeStackNavigator();
+const TodayStack = createNativeStackNavigator();
 
-const SettingsScreen = () => (
-  <View>
-    <Text>Settings Screen</Text>
-  </View>
-);
-
-function SettingsStackScreen() {
+function TodayStackScreen() {
   return (
-    <SettingsStack.Navigator screenOptions={{ headerShown: false }}>
-      <SettingsStack.Screen name="Settings" component={InfoScreen} />
-      {/* <SettingsStack.Screen name="Details" component={DetailsScreen} /> */}
-    </SettingsStack.Navigator>
+    <TodayStack.Navigator screenOptions={{ headerShown: false }}>
+      <TodayStack.Screen name="Settings" component={InfoScreen} />
+    </TodayStack.Navigator>
   );
 }
 
@@ -61,21 +54,18 @@ export default function App() {
           component={HomeStackScreen}
           options={{
             tabBarLabel: "Home",
-            // tabBarIcon: ({ color, size }) => (
-            // <MaterialCommunityIcons name="home" color={color} size={size} />
-            // )
           }}
         />
         <Tab.Screen
           name="Today"
-          component={SettingsStackScreen}
+          component={HomeStackScreen}
           options={{
             tabBarLabel: "Today",
           }}
         />
         <Tab.Screen
           name="You"
-          component={SettingsStackScreen}
+          component={TodayStackScreen}
           options={{
             tabBarLabel: "You",
           }}
@@ -86,11 +76,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+
