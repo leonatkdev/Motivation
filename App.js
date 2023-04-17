@@ -4,8 +4,8 @@ import { Button, Text, View, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Icon from "react-native-ionicons";
 import HomeScreen from "./app/components/Views/Home";
+import InfoScreen from "./app/components/Views/InfoScreen";
 
 //Routing URL:https://reactnavigation.org/docs/tab-based-navigation
 
@@ -30,8 +30,8 @@ const SettingsScreen = () => (
 
 function SettingsStackScreen() {
   return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+    <SettingsStack.Navigator screenOptions={{ headerShown: false }}>
+      <SettingsStack.Screen name="Settings" component={InfoScreen} />
       {/* <SettingsStack.Screen name="Details" component={DetailsScreen} /> */}
     </SettingsStack.Navigator>
   );
