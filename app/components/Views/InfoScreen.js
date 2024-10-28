@@ -27,8 +27,8 @@ if(route.params && route.params.itemName){
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.wrapper}>
         <View style={styles.topSection}>
-          <TouchableOpacity>
-            <Image style={{ width: 20, height: 20 }} source={arrow} />
+          <TouchableOpacity onPress={() => navigation.goBack()} style={{display: 'flex', alignItems: 'center', justifyContent: 'center' , backgroundColor: '#fff', borderRadius: 100, height:30, width:30, marginBottom: 16}}>
+            <Image style={{ width: 20, height: 20, transform: [{rotate: '180deg'}]}} source={arrow} />
           </TouchableOpacity>
           <Text style={styles.title}>Heal & Grow</Text>
         </View>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#1A1F23" },
   wrapper: { padding: 10 },
   topSection: {},
-  title: { color: "white", fontSize: 23 },
+  title: { color: "white", fontSize: 23, fontWeight: "700" },
   containerBox: { position: "relative" },
   logo: {
     marginTop: 20,
